@@ -1,18 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\SolicitudController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('solicitud', SolicitudController::class);
+Route::get('/solicitud/create', [SolicitudController::class, 'create'])->name('solicitud.create');
+Route::post('/solicitud', [SolicitudController::class, 'store'])->name('solicitud.store');
+Route::resource('solicitud', \App\Http\Controllers\SolicitudController::class);
+Route::put('/solicitud/{id}', [SolicitudController::class, 'update'])->name('solicitud.update');
+Route::delete('/solicitud/{id}', [SolicitudController::class, 'destroy'])->name('solicitud.destroy');
+
+
+
